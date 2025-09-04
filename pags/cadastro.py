@@ -10,6 +10,7 @@ class Cadastro:
         self.master.geometry("800x650")
         
         self.create_widgets()
+        
    
     def create_widgets(self):      
        # frames
