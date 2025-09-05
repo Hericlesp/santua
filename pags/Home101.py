@@ -16,7 +16,7 @@ class Home:
         self.container.pack(fill="both", expand=True)
 
         # Criar sidebar
-        self.sidebar = tk.Frame(self.container,width=400, height=30  , bg="#00580C")
+        self.sidebar = tk.Frame(self.container, bg="#00580C")
         self.sidebar.pack(side="left", fill="y")
 
         # Botões dentro do sidebar
@@ -30,7 +30,7 @@ class Home:
 
         # Área principal
         self.main_area = tk.Frame(self.container, bg="#f0f0f0")
-        self.main_area.pack(side="left", fill="both", expand=True)
+        self.main_area.pack(side="left", fill="both" , expand=True)
 
         self.abrir_home()
 
