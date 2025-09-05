@@ -6,8 +6,8 @@ from datetime import datetime
 class Cadastro:
     def __init__(self, master):
         self.master = master
-        self.master.title("Cadastro de Usuário")
-        self.master.geometry("800x650")
+        # self.master.title("Cadastro de Usuário")
+        # self.master.geometry("800x650")
         
         self.create_widgets()
         
