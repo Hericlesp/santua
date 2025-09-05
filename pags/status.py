@@ -7,8 +7,8 @@ import sqlite3
 class Status:
     def __init__(self, master):
         self.master = master
-        self.master.title("Relatórios de Usuários")
-        self.master.geometry("800x600")
+        # self.master.title("Relatórios de Usuários")
+        # self.master.geometry("800x600")
         
         self.create_widgets()
 
