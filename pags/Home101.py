@@ -9,6 +9,10 @@ class Home:
         self.master.title("Sistema com Sidebar Móvel")
         self.master.geometry("980x620") 
 
+        self.criar_widgets()
+
+    def criar_widgets(self):
+        
         self.sidebar_visible = True  # controla se sidebar está visível
 
         # Frame principal
