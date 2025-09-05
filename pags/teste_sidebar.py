@@ -1,10 +1,13 @@
 import tkinter as tk
 
+from cadastro import Cadastro
+
 class Home:
     def __init__(self, master):
         self.master = master
         self.master.title("Sistema com Sidebar Móvel")
         self.master.geometry("980x600")
+        self.Cadastro = Cadastro
 
         self.sidebar_visible = True  # controla se sidebar está visível
 
@@ -18,7 +21,7 @@ class Home:
 
         # Botões dentro do sidebar
         tk.Label(self.sidebar, text="MENU", bg="#000658", fg="white", font=("Arial", 16, "bold")).pack(pady=20)
-        tk.Button(self.sidebar, text="📊 Dashboard").pack(fill="x", pady=5)
+        tk.Button(self.sidebar, text="📊 Dashboard", command=lambda: self.Cadastro.create_widgets()).pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="👥 Cadastro").pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="📝 Lançamento").pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="📑 Relatórios").pack(fill="x", pady=5)
@@ -39,7 +42,7 @@ class Home:
             self.sidebar.pack_forget()  # esconde
             self.sidebar_visible = False
         else:
-            self.sidebar.pack(side="left", fill="y")  # mostra de novo
+            self.sidebar.pack(side="right", fill="y")  # mostra de novo
             self.sidebar_visible = True
 
     def run(self):
