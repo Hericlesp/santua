@@ -8,47 +8,58 @@ import sqlite3
 class Gerar_relatorios:
     def __init__(self, master):
         self.master = master
-        self.master.title("Relatórios de Usuários")
-        self.master.geometry("800x750")
+        # self.master.title("Relatórios de Usuários")
+        # self.master.geometry("800x750")
+        
+
+        self.frame = tk.Frame(self.master, bg="white")
+        self.frame.pack(fill="both", expand=True)
         
         self.create_widgets()
         
 
     def create_widgets(self):
         # Frames
-        up_frame = tk.Frame(self.master, height=120, bg="#145800")
+        up_frame = tk.Frame(self.frame, height=120, bg="#145800")
         up_frame.pack(fill=tk.X)
+
+        sub1_up_frame = tk.Frame(up_frame,  bg="#145800")
+        sub1_up_frame.pack(fill=tk.X, pady=10)
+
+        sub_up_frame = tk.Frame(up_frame,  bg="#f0f0f0")
+        sub_up_frame.pack(fill=tk.X)
         
-        main_frame = tk.Frame(self.master)
+         
+        main_frame = tk.Frame(self.frame)
         main_frame.pack(fill=tk.BOTH, expand=True)#
         
-        sub_main_frame = tk.Frame(main_frame)
+        sub_main_frame = tk.Frame(main_frame, bg="#f0f0f0")
         sub_main_frame.pack(pady=20 , anchor="center")  
  
         sub2_main_frame = tk.Frame(main_frame)
         sub2_main_frame.pack(pady=10, anchor="center")
         
-        footer_frame = tk.Frame(self.master, height=50, bg="#145800")
+        footer_frame = tk.Frame(self.frame, height=50, bg="#145800")
         footer_frame.pack(fill=tk.X)
 
         # Up frame
-        intro_lbl = tk.Label(up_frame, text="Relatórios de Usuários", bg="#145800", fg="white", font=("Arial", 20, "bold"))
-        intro_lbl.pack(pady=20)
+        intro_lbl = tk.Label(sub1_up_frame, text="📤 Relatórios de Usuários", bg="#145800", fg="white", font=("Arial", 28, "bold"))
+        intro_lbl.grid(row=0, columnspan=4,sticky="w")
 
-        id_func_lbl = tk.Label(up_frame, text="ID do Funcionário:", bg="#145800", fg="white", font=("Arial", 12, "bold"))
-        id_func_lbl.pack(side=tk.LEFT, padx=10)
-        id_func_entry = ttk.Combobox(up_frame, width=15, font=("Arial", 12, "bold"))   
-        id_func_entry.pack(side=tk.LEFT)
+        id_func_lbl = tk.Label(sub_up_frame, text="ID do Funcionário:", bg="#f0f0f0", fg="black", font=("Arial", 12, "bold"))
+        id_func_lbl.grid(row=1,column=0, pady=10)
+        id_func_entry = ttk.Combobox(sub_up_frame, width=15, font=("Arial", 12, "bold"))   
+        id_func_entry.grid(row=1, column=1)
         
         #db
         id_func_entry['values'] = ["Funcionario2","Funcionario3","ALL"] # Aqui você pode adicionar os IDs dos funcionários disponíveis pelo db
         id_func_entry.set("Funcionario")
         
         #periodo
-        periodo_lbl = tk.Label(up_frame, text="ID do Funcionário:", bg="#145800", fg="white", font=("Arial", 12, "bold"))
-        periodo_lbl.pack(side=tk.RIGHT, padx=10)
-        periodo_cbx = ttk.Combobox(up_frame, width=15, font=("Arial", 12, "bold"))   
-        periodo_cbx.pack(side=tk.RIGHT)
+        periodo_lbl = tk.Label(sub_up_frame, text="MES:", bg="#f0f0f0", fg="black", font=("Arial", 12, "bold"))
+        periodo_lbl.grid(row=1,column=2, pady=10)
+        periodo_cbx = ttk.Combobox(sub_up_frame, width=15, font=("Arial", 12, "bold"))   
+        periodo_cbx.grid(row=1, column=3)
         
         #db
         periodo_cbx['values'] = ["mes2","mes3"] #mes de referencia
@@ -88,8 +99,8 @@ class Gerar_relatorios:
         donwload_btn.pack(pady=20, anchor="center")
         
         #========= viem ===================
-        view = ttk.Treeview(main_frame, columns=("hora","detalhe","comando"))
-        view.pack(fill=tk.X, pady=20, anchor="center")
+        # view = ttk.Treeview(main_frame, columns=("hora","detalhe","comando"))
+        # view.pack(fill=tk.X, pady=20, anchor="center")
         
         
         # entry_email = tk.Entry(main_frame, width=40, font=("Arial", 12,"bold"))
@@ -111,7 +122,7 @@ class Gerar_relatorios:
 
 
         # Footer frame
-        footer_lbl = tk.Label(footer_frame, text="Hexa", fg="white", bg="#145800", font=("Arial", 12, "bold"))
+        footer_lbl = tk.Label(footer_frame, text=" Hexa - Soluções Empresariais - ₢ Todos direitos reservados - (38) 9 9917-8063", fg="white", bg="#145800", font=("Arial", 10))
         footer_lbl.pack(pady=10)
 
     def setup_database(self):
