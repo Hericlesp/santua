@@ -1,22 +1,18 @@
 import sqlite3 as sql
 import os
 
-DB_PATH = r"\\educcur03\Users\Public\Técnico Informática Noite\HERICLES\santua\data"
+DB_PATH = r"C:\Users\Justino\Documents\Hexa\git&github\santua\data"
 DB_DIR = os.path.join(DB_PATH, "database.db")
 
 
 class CriarBanco:
     def __init__(self):
-        self.create_database()
-        self.create_tables()
-
-    def caminho_do_banco(self):
-        return DB_DIR
-
-    def create_database(self):
-        """Cria o diretório do banco de dados, se não existir."""
+        """Inicializa a conexão com o banco de dados e cria as tabelas se não existirem."""
         if not os.path.exists(DB_PATH):
             os.makedirs(DB_PATH)
+
+        self.create_tables()
+
 
     def create_tables(self):
         """Cria as tabelas no banco de dados."""
@@ -26,13 +22,11 @@ class CriarBanco:
             # Criação da tabela funcionarios
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS funcionarios (
-                    id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
-                    email TEXT NOT NULL,
-                    senha TEXT NOT NULL,
-                    horario_preferido TEXT,
-                    data_nascimento TEXT,
-                    permissao TEXT NOT NULL CHECK (permissao IN ('USER', 'ROOT'))
+                    ID_FUNCIONARIO INTEGER PRIMARY KEY AUTOINCREMENT,
+                    NOME TEXT NOT NULL,
+                    DATA_ADM date NOT NULL,
+                    CARGO TEXT NOT NULL,
+                    PERMISSAO TEXT NOT NULL CHECK (permissao IN ('USER', 'ROOT'))
                 )
             ''')
 
