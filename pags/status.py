@@ -26,8 +26,8 @@ class Status:
         footer_frame.pack(fill=tk.X)
 
         # Up frame
-        intro_lbl = tk.Label(up_frame, text="Relatórios de Usuários", bg="#145800", fg="white", font=("Arial", 20, "bold"))
-        intro_lbl.pack(pady=20)
+        intro_lbl = tk.Label(up_frame, text="💾 STATUS", bg="#145800", fg="white", font=("Arial", 28, "bold"))
+        intro_lbl.pack(side=tk.LEFT, pady=10)
 
         # Main frame - Treeview
         columns = ("id", "nome", "email", "horario_preferido", "data_nascimento")
@@ -40,7 +40,7 @@ class Status:
         self.tree.pack(fill=tk.BOTH, expand=True)
 
         # Footer frame
-        footer_lbl = tk.Label(footer_frame, text="Hexa", fg="white", bg="#145800", font=("Arial", 12, "bold"))
+        footer_lbl = tk.Label(footer_frame, text=" Hexa - Soluções Empresariais - ₢ Todos direitos reservados - (38) 9 9917-8063", bg="#00580C", fg="white", font=("Arial", 10))
         footer_lbl.pack(pady=10)
 
     def setup_database(self):
