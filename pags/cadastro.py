@@ -99,6 +99,8 @@
 import tkinter as tk
 from tkinter import messagebox
 from datetime import datetime
+
+import Home101
     
 class Cadastro:
     def __init__(self, master):
@@ -115,34 +117,46 @@ class Cadastro:
         up_frame = tk.Frame(self.frame, height=120, bg="#145800")
         up_frame.pack(fill=tk.X)
         
-        main_frame = tk.Frame(self.frame, height=300)
+        main_frame = tk.Frame(self.frame, bg="#F3F3F3",height=300)
         main_frame.pack(fill=tk.BOTH, expand=True)
         
-        footer_frme = tk.Frame(self.frame, height=200, bg="#145800")
+        footer_frme = tk.Frame(self.frame, height=50, bg="#145800")
         footer_frme.pack(fill=tk.X)
 
         #Up frame
-        intro_lbl = tk.Label(up_frame, text="Cadastro de Usuário", bg="#145800", fg="white", font=("Arial", 20,"bold"))
-        intro_lbl.pack(pady=20)
 
-        self.label_nome = tk.Label(main_frame, text="Nome:", font=("Arial", 16,"bold"))
+
+        intro_lbl = tk.Label(up_frame, text="📊 CADASTRO", bg="#00580C", fg="white", font=("Arial", 28, "bold"))
+        intro_lbl.grid(row=0, column=1, pady=10)
+
+        self.label_nome = tk.Label(main_frame, text="NOME:", font=("Arial", 16,"bold"))
         self.label_nome.pack(pady=5)
         self.entry_nome = tk.Entry(main_frame, width=40, font=("Arial", 12,"bold"))
         self.entry_nome.pack(pady=5)
 
-        # ... resto igual ...
+        self.dateadm_lbl = tk.Label(main_frame, text="ADMISSÃO:", font=("Arial", 16,"bold"))
+        self.dateadm_lbl.pack(pady=5)
+        self.dateadm_ent = tk.Entry(main_frame, width=40, font=("Arial", 12,"bold"))
+        self.dateadm_ent.pack(pady=5)
+
+        self.cargo_lbl = tk.Label(main_frame, text="CARGO:", font=("Arial", 16,"bold"))
+        self.cargo_lbl.pack(pady=5)
+        self.cargo_ent = tk.Entry(main_frame, width=40, font=("Arial", 12,"bold"))
+        self.cargo_ent.pack(pady=5)
+
+
 
         self.button_cadastrar = tk.Button(main_frame, text="Cadastrar", font=("Arial", 16,"bold"), command=self.cadastrar)
         self.button_cadastrar.pack(pady=20)
         
         #footer frame
-        footer = tk.Label(footer_frme, text=("Hexa"), fg="white", bg="#145800",font=("Arial", 12,"bold"))
-        footer.pack()
-        footer_donw = tk.Label(footer_frme, text="Soluções Empresariais",fg="white", bg="#145800",font=("Arial", 10))
-        footer_donw.pack()
+        # footer = tk.Label(footer_frme, text="Hexa", fg="white", bg="#145800",font=("Arial", 10,"bold"))
+        # footer.pack()
+        footer_donw = tk.Label(footer_frme, text=" Hexa - Soluções Empresariais - ₢ Todos direitos reservados - (38) 9 9917-8063",fg="white", bg="#145800",font=("Arial", 10))
+        footer_donw.pack(pady=10)
 
     def cadastrar(self):
-        nome = self.entry_nome.get()
+        nome = self.entry_nome.get().upper()
         email = self.entry_email.get()
         senha = self.entry_senha.get()
         horario = self.entry_horario.get()
@@ -162,6 +176,10 @@ class Cadastro:
 
         messagebox.showinfo("Sucesso", "Usuário cadastrado com sucesso!")
         self.frame.destroy()  # fecha só a tela de cadastro
+
+    def open_toggle(self):
+        Home101.Home.toggle_sidebar(self)
+
 
     def run(self):
         self.master.mainloop()
