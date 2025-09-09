@@ -115,6 +115,7 @@ import tkinter as tk
 
 import cadastro
 import status
+import relatorios
 
 class Home:
     def __init__(self, master):
@@ -144,7 +145,7 @@ class Home:
         tk.Button(self.sidebar, text="👥 Cadastro", command=self.abrir_Cadastro).pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="📝 Lançamento").pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="🔎 Status", command=self.abrir_status).pack(fill="x", pady=5)
-        tk.Button(self.sidebar, text="📑 Relatórios").pack(fill="x", pady=5)
+        tk.Button(self.sidebar, text="📑 Relatórios", command=self.abrir_relatorios).pack(fill="x", pady=5)
         tk.Button(self.sidebar, text="❌ Sair", command=self.abrir_sair).pack(fill="x", pady=5)
 
         # Área principal
@@ -163,10 +164,10 @@ class Home:
         self.up_frame = tk.Frame(self.main_area, bg="#00580C", height=150)
         self.up_frame.pack(fill="x")
 
-        self.principal_frame = tk.Frame(self.main_area, bg="#DDDDDD")
+        self.principal_frame = tk.Frame(self.main_area, bg="#f3f3f3")
         self.principal_frame.pack(fill="both", expand=True)
 
-        self.footer_frame = tk.Frame(self.main_area, bg="#00580C")
+        self.footer_frame = tk.Frame(self.main_area, bg="#00580C", height=50)
         self.footer_frame.pack(fill="x")
 
         # Configurar o peso das colunas e linhas
@@ -181,16 +182,21 @@ class Home:
         self.toggle_btn = tk.Button(self.up_frame, text="📊", bg="#00580C", fg="white",font=("Arial", 20, "bold"), command=self.toggle_sidebar)
         self.toggle_btn.grid(row=0 ,column=0, padx=10,)
         tk.Label(self.up_frame, text=" DASHBOARD", bg="#00580C", fg="white", font=("Arial", 28, "bold")).grid(row=0, column=2, pady=10)
-        tk.Label(self.principal_frame, text="HEXA", bg="#DDDDDD", fg="black", font=("Arial", 98, "bold")).grid(row=0, column=0, columnspan=2, rowspan=2, sticky="nsew")
-        tk.Label(self.principal_frame, text="Soluções Empresariais", bg="#DDDDDD", fg="black", font=("Arial", 18)).grid(row=1, column=0, columnspan=2)
-        tk.Label(self.footer_frame, text="₢ Todos direitos reservados", bg="#00580C", fg="white", font=("Arial", 12)).pack(pady=10)
+        tk.Label(self.principal_frame, text="HEXA", bg="#f3f3f3", fg="black", font=("Arial", 98, "bold")).grid(row=0, column=0, columnspan=2, rowspan=2, sticky="nsew")
+        tk.Label(self.principal_frame, text="Soluções Empresariais", bg="#f3f3f3", fg="black", font=("Arial", 18)).grid(row=1, column=0, columnspan=2)
+        tk.Label(self.footer_frame, text=" Hexa - Soluções Empresariais - ₢ Todos direitos reservados - (38) 9 9917-8063", bg="#00580C", fg="white", font=("Arial", 10)).pack(pady=10)
 
     def abrir_Cadastro(self):
         self.limpar_center()
         cadastro.Cadastro(self.main_area)
 
     def abrir_status(self):
-        status.Status(tk.Toplevel(self.main_area))
+        self.limpar_center()
+        status.Status((self.main_area))
+
+    def abrir_relatorios(self):
+        self.limpar_center()
+        relatorios.Gerar_relatorios(self.main_area)
 
     def abrir_sair(self):
         self.master.destroy()
